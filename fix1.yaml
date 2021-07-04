@@ -9,4 +9,5 @@ spec:
   - name: nginx
     image: nginx
     ports:
-    - containerPort: 80
+    - name: nodejs-ports
+      containerPort: 80

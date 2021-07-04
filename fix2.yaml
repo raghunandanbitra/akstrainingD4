@@ -1,11 +1,12 @@
-kind: Services
+apiVersion: v1
+kind: Service
 metadata:
-  name: 1my-service
+  name: my-service
 spec:
-  port:
-  port: 80
+  ports:
+  - port: 80
     targetPort: nodejs-ports
     protocol: TCP
-  selectors:
-    app: myapp
-  type: mytype
+  selector:
+    app: frontend
+  type: NodePort
