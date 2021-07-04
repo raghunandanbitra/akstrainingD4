@@ -1,4 +1,4 @@
-apiversion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
@@ -6,7 +6,7 @@ metadata:
   labels:
     app: redis-deployment
   name: redis-deployment
-  namespace: mynamespace
+  namespace: default
 spec:
   progressDeadlineSeconds: 600
   replicas: 3
@@ -18,16 +18,17 @@ spec:
     rollingUpdate:
       maxSurge: 100%
       maxUnavailable: 25%
-    type: RollingUpdates
-    template:
+    type: RollingUpdate
+  template:
     metadata:
       labels:
         app: redis-deployment
     spec:
       containers:
-      - image: redis
-        imagePullPolicy: never
-        name: redisdgess
+      - name: redisdgess
+        image: redis
+        imagePullPolicy: Never
         ports:
-        - containerPort: 7000
+        - name: myport
+          containerPort: 7000
           protocol: TCP
